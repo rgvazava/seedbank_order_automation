@@ -95,7 +95,7 @@ This shows the expected format and columns.
 
 ## Why I built this
 
-The original process involved a lot of manual steps — copying data, organizing files, and drafting emails. This project was built to streamline that into a single, repeatable workflow.
+The original process involved a lot of manual steps, copying data, organizing files, and drafting emails. This project was built to streamline that into a single, repeatable workflow.
 
 It’s designed so that someone non-technical can run it without needing to touch the code.
 
