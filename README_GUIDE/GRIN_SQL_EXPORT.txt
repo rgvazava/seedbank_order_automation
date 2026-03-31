@@ -1,0 +1,1 @@
+Input data is expected to be exported from a database or system in CSV/Excel format. A sample file is included in the `inputs/` folder to demonstrate the required structure.

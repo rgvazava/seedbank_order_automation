@@ -1,0 +1,62 @@
+{
+  "input_csv": "inputs/SQL_GRIN_ORDER.csv",
+  "output_root": "outputs/orders_out",
+  "curator_inbox_root": "outputs/curator_inboxes",
+  "master_outbox_root": "outputs/master_outbox",
+  "curator_folder_map": {
+    "curator.b@example.org": "Curator_B",
+    "curator.a@example.org": "Curator_A",
+    "curator.c@example.org": "Curator_C",
+    "curator.d@example.org": "Curator_D",
+    "curator.e@example.org": "Curator_E"
+  },
+
+  "log_file": "logs/log_order.txt",
+
+  "aphis": {
+    "template_pdf": "DO_NOT_TOUCH/templates/APHIS_template.pdf",
+    "output_filename": "order_{order_id}_APHIS.pdf",
+    "dropdown11": "W6 - GSPI",
+    "date_mode": "today",
+    "static_fields": {}
+  },
+
+  "domestic_names": [
+    "us",
+    "united states",
+    "usa",
+    "u.s.a.",
+    "u.s.",
+    "united states of america"
+  ],
+
+  "policy_requirements": [421, 422, 435],
+
+  "curators": {
+    "curator.b@example.org": [418, 427, 431, 434],
+    "curator.c@example.org": [419, 423, 424, 428, 429, 430],
+    "curator.a@example.org": [420, 425, 426, 432, 433],
+    "curator.p@example.org": [421, 422, 435, 694]
+  },
+
+  "curator_name_to_email": {
+    "Curator P": "curator.p@example.org",
+    "Curator B": "curator.b@example.org",
+    "Curator C": "curator.c@example.org",
+    "Curator A": "curator.a@example.org"
+  },
+
+  "curator_email_map": {
+    "Curator P": "curator.p@example.org",
+    "Curator B": "curator.b@example.org",
+    "Curator C": "curator.c@example.org",
+    "Curator A": "curator.a@example.org"
+  },
+
+  "internal_recipient": "permits@example.org",
+
+  "templates": {
+    "internal": "Hi Team,\\n\\nPlease find attached APHIS import/export requirement forms for the following order/s:\\n\\norder_GGOO - CCOO \\n\\nRegards, WRPIS Seed Bank ",
+    "external": "Dear International Germplasm Requestor,\\n\\nThank you for placing your request for germplasm from the Western Regional Plant Introduction Station (WRPIS) of the USDA-ARS National Plant Germplasm System (NPGS). Your request included germplasm of at least one accession corresponding to our site, but also might contain accessions from other NPGS sites. The decisions and abilities to fill this request from the WRPIS are independent of what may happen to germplasm requested from the other NPGS sites, if any. Furthermore, five separate Curatorial Programs exist at the WRPIS and a request for accessions across several Curatorial Programs requires some coordination on our end but also from the requestor. As your germplasm request is destined for international distribution we need additional documentation. We will need an Import Permit to send your requested germplasm.\\n\\nA decision to ship germplasm depends on the receipt of pertinent documentation provided by the requestor. Ultimately, the decision to ship/distribute germplasm also is contingent on the ability of the WRPIS to meet any specific requirements imposed by the country attempting to introduce germplasm (e.g., import permit, additional declarations). Please do not hesitate to contact us with questions and/or comments about your germplasm request.\\n\\nNPGS Web Order WWOO / GRIN Order GGOO - IP Request"
+  }
+}

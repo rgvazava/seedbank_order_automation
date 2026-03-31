@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WRPIS Seedbank Automation Guide</title>
+    <style>
+        :root {
+            --wsu-crimson: #981e32;
+            --wsu-gray: #5e6a71;
+            --light-gray: #f3f4f6;
+            --border-color: #e5e7eb;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f9fafb;
+        }
+
+        header {
+            background-color: var(--wsu-crimson);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            border-bottom: 4px solid var(--wsu-gray);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.2rem;
+            font-weight: 600;
+        }
+
+        header p {
+            margin-top: 0.5rem;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+            background: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .section {
+            padding: 2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        h2 {
+            color: var(--wsu-crimson);
+            font-size: 1.5rem;
+            margin-top: 0;
+            border-left: 5px solid var(--wsu-gray);
+            padding-left: 10px;
+        }
+
+        h3 {
+            color: #2d3748;
+            margin-top: 1.5rem;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .step-number {
+            background-color: var(--wsu-gray);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+            margin-top: 4px;
+        }
+
+        code {
+            background-color: var(--light-gray);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: Consolas, monospace;
+            color: #c7254e;
+            font-size: 0.9em;
+            border: 1px solid #e2e8f0;
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 6px;
+            margin: 1rem 0;
+            border-left: 4px solid;
+        }
+
+        .alert-info {
+            background-color: #ebf8ff;
+            border-color: #4299e1;
+            color: #2c5282;
+        }
+
+        .alert-warning {
+            background-color: #fffaf0;
+            border-color: #ed8936;
+            color: #7b341e;
+        }
+
+        .alert-danger {
+            background-color: #fff5f5;
+            border-color: #f56565;
+            color: #9b2c2c;
+        }
+
+        .print-btn {
+            display: block;
+            margin: 0 auto 2rem auto;
+            background-color: var(--wsu-gray);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .print-btn:hover {
+            background-color: #4a5568;
+        }
+
+        @media print {
+            .print-btn { display: none; }
+            body { background: white; }
+            .container { box-shadow: none; max-width: 100%; margin: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>WRPIS Seedbank Order Automation</h1>
+    <p>Curator Workflow Guide</p>
+</header>
+
+<div class="container">
+
+    <div class="section">
+        <h2>Overview</h2>
+        <p>This system automates the handling of international GRIN “Foreign New Order Items” reports.</p>
+        <p>It generates:</p>
+        <ul>
+            <li>Filled APHIS permit PDFs</li>
+            <li>Standardized order summary files</li>
+            <li>Structured master email packets</li>
+        </ul>
+        <p><strong>Core Principle:</strong> All editing happens in one permanent curator inbox. Timestamped folders are records only.</p>
+    </div>
+
+    <div class="section">
+        <h2>Daily Workflow</h2>
+
+        <div class="step">
+            <div class="step-number">1</div>
+            <div>
+                <h3>Export the GRIN Report</h3>
+                <p>Export the <strong>Foreign New Order Items</strong> report.</p>
+                <ul>
+                    <li>Export as <strong>CSV (.csv)</strong></li>
+                    <li>Do not rename or modify column headers</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-number">2</div>
+            <div>
+                <h3>Run the Automation</h3>
+                <p>Drag and drop the CSV file onto:</p>
+                <code>run_orders.bat</code>
+                <div class="alert alert-info">
+                    The system processes orders automatically and places them into the correct curator folders.
+                </div>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-number">3</div>
+            <div>
+                <h3>Open Your Permanent Curator Inbox</h3>
+                <p>Location:</p>
+                <code>outputs/curator_inboxes/&lt;Your_Name&gt;/orders/</code>
+
+                <p>Each order folder contains:</p>
+                <ul>
+                    <li><code>order_&lt;id&gt;.txt</code> – order summary & taxa list</li>
+                    <li><code>order_&lt;id&gt;_APHIS.pdf</code> – filled APHIS form</li>
+                    <li><code>MASTER email_packet.txt</code> – editable master record</li>
+                    <li><code>OPEN_MASTER_PACKET.bat</code> – opens the master packet</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Sending the Permit Email</h2>
+
+        <div class="alert alert-danger">
+            <strong>Important:</strong> Status tracking happens ONLY inside the MASTER email packet.
+        </div>
+
+        <div class="step">
+            <div class="step-number">1</div>
+            <div>
+                <h3>Open the Master Packet</h3>
+                <p>Inside the order folder, double-click:</p>
+                <code>OPEN_MASTER_PACKET.bat</code>
+                <p>This ensures you are editing the correct master record.</p>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-number">2</div>
+            <div>
+                <h3>Send via Outlook</h3>
+                <ul>
+                    <li><strong>To:</strong> Permits (Samantha)</li>
+                    <li><strong>CC:</strong> Curators listed in the packet</li>
+                    <li><strong>Subject & Body:</strong> Copy exactly as written</li>
+                    <li><strong>Attachment:</strong> The APHIS PDF in the same folder</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-number">3</div>
+            <div>
+                <h3>Update Status</h3>
+                <p>After sending, edit the master file:</p>
+                <code>STATUS: NOT SENT → STATUS: SENT</code>
+                <p>Save and close.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Understanding the Folder System</h2>
+
+        <h3>Permanent Curator Inbox (Source of Truth)</h3>
+        <p>All edits and real work happen here:</p>
+        <code>outputs/curator_inboxes/</code>
+
+        <p>This folder accumulates orders over time. Re-running the program never deletes previous orders.</p>
+
+        <h3>ALL_INBOX Folder</h3>
+        <p>The ALL_INBOX folder provides quick access to every order across curators.</p>
+        <p>It contains pointer files only. It does <strong>not</strong> contain duplicate copies.</p>
+
+        <h3>Timestamped Snapshot Folders</h3>
+        <p>Located under:</p>
+        <code>outputs/orders_out/&lt;timestamp&gt;/</code>
+
+        <p>These are historical records for auditing or troubleshooting. They are not edited.</p>
+    </div>
+
+    <div class="section">
+        <h2>System Logic</h2>
+
+        <h3>Primary Curator Selection</h3>
+        <p>The curator with the highest number of items in an order is automatically selected as the primary curator for APHIS processing.</p>
+
+        <h3>No File Duplication</h3>
+        <p>The system avoids duplicate copies to prevent sync conflicts or version confusion.</p>
+
+        <h3>Duplicate Protection</h3>
+        <p>If an order already exists, the system will not overwrite SENT master packets.</p>
+    </div>
+
+    <div class="section">
+        <h2>Rules & Important Notes</h2>
+        <ul>
+            <li>Do not edit files inside timestamp folders</li>
+            <li>Do not rename order folders</li>
+            <li>Do not move files outside the curator inbox structure</li>
+            <li>Do not modify anything inside <code>DO_NOT_TOUCH/</code></li>
+            <li>If something looks incorrect, report the Order ID</li>
+        </ul>
+    </div>
+
+    <div style="text-align: center; padding: 2rem;">
+        <button onclick="window.print()" class="print-btn">Print / Save as PDF</button>
+        <p style="font-size: 0.8rem; color: #718096;">WRPIS Seedbank Order Automation</p>
+    </div>
+
+</div>
